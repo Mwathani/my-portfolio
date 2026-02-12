@@ -21,8 +21,12 @@ const Hero = ({ name, role, description }: HeroProps) => {
         Available for work
       </span>
 
+      <section className="flex flex-col items-center ... animate-in fade-in slide-in-from-bottom-8 duration-1000"></section>
       <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-        I'm <span className="text-blue-600">{name}</span>
+        I'm{" "}
+        <span className="inline-block bg-gradient-to-r from-blue-600 via-purple-500 to-teal-400 bg-clip-text text-transparent animate-gradient-text">
+          {name}
+        </span>
       </h1>
       
       <h2 className="mt-4 text-2xl md:text-3xl font-semibold text-slate-700 dark:text-slate-300">

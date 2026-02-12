@@ -21,7 +21,7 @@ const Contact = () => {
       name: 'Facebook',
       value: 'Rooney Mwathani',
       icon: <Facebook className="w-6 h-6" />,
-      link: 'https://facebook.com/yourprofile',
+      link: 'https://web.facebook.com/rooney.lavia',
       color: 'bg-blue-50 text-blue-600 dark:bg-blue-900/20',
     },
   ];

@@ -20,10 +20,6 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
             Technical Skills.
           </h2>
-          <p className="text-slate-500 mt-2">
-            Languages automatically detected from my GitHub repositories 
-            which are public but not private.
-          </p>
         </div>
         
         <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">

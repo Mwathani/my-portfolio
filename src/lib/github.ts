@@ -1,31 +1,63 @@
+// src/lib/github.ts
 
 export async function getGitHubData(username: string) {
-  
-  const res = await fetch(`https://api.github.com/users/${username}/repos`, {
-    next: { revalidate: 3600 } // Auto-refresh data every hour
-  });
+  const token = process.env.GITHUB_TOKEN;
+  const headers = {
+    ...(token && { Authorization: `Bearer ${token}` }),
+  };
 
-  if (!res.ok) throw new Error('Failed to fetch GitHub data');
+  // 1. Add your filter list here
+  // You can add or remove any language from this array
+  const excludedLanguages = [
+    'CMake', 
+    'Shell', 
+    'Dockerfile', 
+    'Pug', 
+    'Swift', 
+    'Objective-C', 
+    'Groovy', 
+    'Jupyter Notebook',
+    'Makefile',
+    'C++',
+    'Objective-C++',
+    'C',
+    'Ruby',
+    "Cap'n Proto",
+  ];
 
-  const repos = await res.json();
+  try {
+    const reposRes = await fetch(
+      `https://api.github.com/users/${username}/repos?per_page=100&sort=updated`,
+      { headers, next: { revalidate: 3600 } }
+    );
 
+    if (!reposRes.ok) return { uniqueSkills: [] };
+    const repos = await reposRes.json();
 
-  const languages: string[] = repos
-    .map((repo: any) => repo.language)
-    .filter((lang: string | null) => lang !== null);
+    const languageRequests = repos.map(async (repo: any) => {
+      try {
+        const langRes = await fetch(repo.languages_url, { headers, next: { revalidate: 3600 } });
+        return langRes.ok ? await langRes.json() : {};
+      } catch {
+        return {};
+      }
+    });
 
+    const allLanguagesData = await Promise.all(languageRequests);
 
-  const uniqueSkills = Array.from(new Set(languages));
+    const skillSet = new Set<string>();
+    allLanguagesData.forEach((data) => {
+      Object.keys(data).forEach((lang) => {
+        // 2. Only add to the set if it's NOT in the excluded list
+        if (!excludedLanguages.includes(lang)) {
+          skillSet.add(lang);
+        }
+      });
+    });
 
-  
-  const featuredProjects = repos
-    .filter((repo: any) => repo.stargazers_count > 0 || repo.topics?.includes('portfolio'))
-    .map((repo: any) => ({
-      title: repo.name,
-      description: repo.description,
-      url: repo.html_url,
-      stars: repo.stargazers_count,
-    }));
-
-  return { uniqueSkills, featuredProjects };
+    return { uniqueSkills: Array.from(skillSet) };
+  } catch (error) {
+    console.error("Network error fetching GitHub data:", error);
+    return { uniqueSkills: [] };
+  }
 }
