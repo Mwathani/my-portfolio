@@ -1,65 +1,75 @@
-import Image from "next/image";
+import Hero from '../components/Hero'; 
+import Contact from '../components/Contact';
+import { getGitHubData } from '@/lib/github';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="bg-white dark:bg-slate-950 min-h-screen">
+      {/* { 1. HERO SECTION:  */}
+
+      <Hero 
+        name="Rooney Mwathani" 
+        role="Full-Stack Developer"
+        description="I specialize in building type-safe, scalable web applications. My skill set below is live-synced from my GitHub activity."
+      />
+
+      {/* { 2. SKILLS SECTION:  */}
+
+      <section className="py-20 border-t border-slate-100 dark:border-slate-800 px-4">
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+            Technical Skills.
+          </h2>
+          <p className="text-slate-500 mt-2">
+            Languages automatically detected from my GitHub repositories 
+            which are public but not private.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        
+        <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
+          <GithubSkills username="Mwathani" />
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* { 3. CONTACT SECTION:  */}
+      <Contact /> 
+      
+      {/* { 4. FOOTER:  */}
+      <footer className="py-10 text-center text-slate-400 text-sm border-t border-slate-100 dark:border-slate-800">
+        © {new Date().getFullYear()} Rooney Mwathani. Built with Next.js & TypeScript.
+      </footer>
+    </main>
   );
+}
+
+//  GITHUB SKILLS COMPONENT
+
+async function GithubSkills({ username }: { username: string }) {
+  try {
+    const { uniqueSkills } = await getGitHubData(username);
+
+    if (uniqueSkills.length === 0) {
+      return <p className="text-slate-500">No public languages detected yet.</p>;
+    }
+
+    return (
+      <>
+        {uniqueSkills.map((skill) => (
+          <span 
+            key={skill} 
+            className="px-6 py-3 bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 rounded-xl border border-slate-200 dark:border-slate-800 font-bold shadow-sm hover:scale-105 hover:border-blue-500 transition-all cursor-default"
+          >
+            {skill}
+          </span>
+        ))}
+      </>
+    );
+  } catch (error) {
+    console.error("GitHub Fetch Error:", error);
+    return (
+      <div className="p-4 bg-red-50 dark:bg-red-900/10 rounded-lg text-red-600 dark:text-red-400 text-sm">
+        Unable to sync skills from GitHub at the moment.
+      </div>
+    );
+  }
 }
