@@ -1,11 +1,12 @@
 import Hero from '../components/Hero'; 
+import Experience from '../components/Experience';
 import Contact from '../components/Contact';
 import { getGitHubData } from '@/lib/github';
 
 export default function Home() {
   return (
     <main className="bg-white dark:bg-slate-950 min-h-screen">
-      {/* { 1. HERO SECTION:  */}
+      {/*  1. HERO SECTION:  */}
 
       <Hero 
         name="Rooney Mwathani" 
@@ -13,8 +14,10 @@ export default function Home() {
         description="I specialize in building type-safe, scalable web applications. My skill set below is live-synced from my GitHub activity."
       />
 
-      {/* { 2. SKILLS SECTION:  */}
-
+      {/*  2. EXPERIENCE SECTION:  */}
+      <Experience />
+      
+      {/* 4. Skills */}
       <section className="py-20 border-t border-slate-100 dark:border-slate-800 px-4">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
@@ -27,10 +30,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* { 3. CONTACT SECTION:  */}
-      <Contact /> 
-      
-      {/* { 4. FOOTER:  */}
+      {/*  3. CONTACT SECTION:  */}
+      <Contact />
+
+      {/* { 5. FOOTER:  */}
       <footer className="py-10 text-center text-slate-400 text-sm border-t border-slate-100 dark:border-slate-800">
         © {new Date().getFullYear()} Rooney Mwathani. Built with Next.js & TypeScript.
       </footer>
