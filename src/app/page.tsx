@@ -1,5 +1,6 @@
 import Hero from '../components/Hero'; 
 import Experience from '../components/Experience';
+import Education from '@/components/Education';
 import Contact from '../components/Contact';
 import { getGitHubData } from '@/lib/github';
 
@@ -16,6 +17,9 @@ export default function Home() {
 
       {/*  2. EXPERIENCE SECTION:  */}
       <Experience />
+
+      {/* 3. EDUCATION SECTION:  */}
+      <Education />
       
       {/* 4. Skills */}
       <section className="py-20 border-t border-slate-100 dark:border-slate-800 px-4">
@@ -30,10 +34,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/*  3. CONTACT SECTION:  */}
+      {/*  5. CONTACT SECTION:  */}
       <Contact />
 
-      {/* { 5. FOOTER:  */}
+      {/* { 6. FOOTER:  */}
       <footer className="py-10 text-center text-slate-400 text-sm border-t border-slate-100 dark:border-slate-800">
         © {new Date().getFullYear()} Rooney Mwathani. Built with Next.js & TypeScript.
       </footer>
