@@ -12,7 +12,7 @@ export default function Home() {
       {/* 1. HERO SECTION */}
       <section className="relative h-screen z-10 flex items-center justify-center">      
         <Hero 
-          name="Rooney Mwathani" 
+          name="Rooney Mwathani (TechRM) " 
           role="Full-Stack Developer"
           description="BSc. Information Technology graduate from Maseno University. Specialized in building type-safe, scalable web applications and driving digital literacy."
         />
