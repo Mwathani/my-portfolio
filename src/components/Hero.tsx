@@ -37,22 +37,22 @@ const Hero = ({ name, role, description }: HeroProps) => {
         {description}
       </p>
 
-      <div className="flex flex-col sm:flex-row gap-4 mt-10 print:hidden">
-      
-        <a 
-          href="#projects" 
-          className="px-8 py-3 text-white bg-blue-600 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20"
-        >
-          View My Work
-        </a>
+    <div className="flex flex-col sm:flex-row gap-4 mt-8">
+      {/* VIEW WORK - Scrolls to your projects/skills */}
+      <button 
+        onClick={() => window.scrollTo({ top: 1000, behavior: 'smooth' })}
+        className="px-8 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all shadow-lg">
+        View My Work
+      </button>
 
-        <button 
-          onClick={handleDownload}
-          className="px-8 py-3 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 rounded-lg font-medium hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors"
-        >
-          Download Resume
-        </button>
-      </div>
+      {/* DOWNLOAD RESUME - This is the fix! */}
+      <a 
+        href="/Rooney_Mwathani_Resume.pdf" 
+        download="Rooney_Mwathani_Resume.pdf"
+        className="px-8 py-3 border-2 border-blue-600 text-blue-600 font-bold rounded-lg hover:bg-blue-50 transition-all text-center">
+        Download Resume
+      </a>
+    </div>
     </section>
   );
 };
