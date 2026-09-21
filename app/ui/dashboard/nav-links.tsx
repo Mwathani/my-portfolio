@@ -3,7 +3,6 @@
 import {
   HomeIcon,
   InformationCircleIcon,
-  FolderIcon,
   WrenchScrewdriverIcon,
   BriefcaseIcon,
   AcademicCapIcon,
@@ -19,7 +18,6 @@ import clsx from 'clsx';
 const links = [
   { name: 'Home', href: '/dashboard', icon: HomeIcon },
   { name: 'Introduction', href: '/dashboard/introduction', icon: InformationCircleIcon},
-  { name: 'Project', href: '/dashboard/project', icon: FolderIcon },
   { name: 'Skill', href: '/dashboard/skill', icon: WrenchScrewdriverIcon},
   { name: 'Experience', href: '/dashboard/experience', icon: BriefcaseIcon },
   { name: 'Education', href: '/dashboard/education', icon: AcademicCapIcon },
