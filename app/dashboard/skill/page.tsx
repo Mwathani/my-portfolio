@@ -2,7 +2,7 @@
 export default function SkillsPage() {
   return (
     <section className="skills-section">
-      <p className="section-label section-title-bold">02 / Technical Toolbox</p>
+      <p className="section-label section-title-bold">Technical Toolbox</p>
       <div className="skills-content">
         <div className="skills-heading">
           <p className="skills-kicker">Capabilities & tools</p>

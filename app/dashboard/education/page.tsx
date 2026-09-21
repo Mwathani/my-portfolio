@@ -2,7 +2,7 @@
 export default function EducationPage() {
   return (
     <section className="education-section">
-      <p className="section-label section-title-bold">04 / Education</p>
+      <p className="section-label section-title-bold">Education</p>
       <div className="education-content">
         <div className="education-heading">
           <p className="education-kicker">Academic foundation</p>

@@ -2,7 +2,7 @@
 export default function ContactPage() {
   return (
     <section className="contact-section">
-      <p className="section-label">06 / Let&apos;s connect</p>
+      <p className="section-label">Let&apos;s connect</p>
       <div className="contact-content">
         <h2>Have a good<br /><em>idea?</em></h2>
         <div className="contact-card">

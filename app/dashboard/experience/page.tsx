@@ -2,7 +2,7 @@
 export default function ExperiencePage() {
   return (
     <section className="experience-section">
-      <p className="section-label section-title-bold">03 / Experience</p>
+      <p className="section-label section-title-bold">Experience</p>
       <div className="experience-content">
         <div className="experience-heading">
           <p className="experience-kicker">Professional journey</p>
