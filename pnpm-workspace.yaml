@@ -1,5 +1,0 @@
-allowBuilds:
-  sharp: false
-minimumReleaseAgeExclude:
-  - '@next/*'
-  - next

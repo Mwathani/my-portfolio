@@ -62,7 +62,7 @@ export default function Page() {
         <div className="hero-footer">
           <p className="intro">I&apos;m <strong>Rooney Mwathani</strong> — a developer focused on creating dependable, expressive experiences for the web.</p>
           <div className="hero-actions" aria-label="Portfolio actions">
-            <button className="cv-button" type="button" disabled title="CV upload coming soon">
+            <button className="cv-button" type="button" title="CV upload coming soon">
               Download CV <span aria-hidden="true">↓</span>
             </button>
             <span className="cv-status">CV upload coming soon</span>
